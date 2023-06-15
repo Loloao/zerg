@@ -235,13 +235,26 @@ URL 语义要明确，最好是有一份比较标准的文档
 
 ## 异常
 
-想要覆写异常类，自动抛出指定的错误类，需要到 app/provider.php 绑定异常处理类
+想要覆写异常类，自动抛出指定的错误类，需要到对应应用下的 provider.php 文件下绑定异常处理类
+
+```php
+<?php
+
+use app\lib\exception\ExceptionHandler;
+use app\Request;
+
+// 容器Provider定义文件
+return [
+  'think\Request'          => Request::class,
+  'think\exception\Handle' => ExceptionHandler::class,
+];
+```
 
 ### 异常分类
 - 由于用户行为导致的异常（没有通过验证器，没查询到结果）。通常不需要记录日志，需要向用户返回具体信息
 - 服务器自身异常（代码错误，调用外部接口日志）。通常记录日志，不想客户端返回具体原因
 
-/think/Exception 和 /think/HttpException 并没有联系，两遍都是继承 Exception
+/think/Exception 和 /think/HttpException 并没有联系，两边都是继承 Exception
 
 ### 日志
 
