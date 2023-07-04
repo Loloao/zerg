@@ -3,8 +3,9 @@
 namespace app\api\model;
 
 use think\facade\Db;
+use think\Model;
 
-class Banner
+class Banner extends Model
 {
   public static function getBannerByID($id)
   {
