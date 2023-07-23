@@ -2,15 +2,15 @@
 
 namespace app\api\model;
 
-use think\facade\Db;
-use think\Model;
-
-class Banner extends Model
+class Banner extends BaseModel
 {
+  protected $hidden = ['update_time', 'delete_time'];
+  public function items() {
+    return $this->hasMany('BannerItem', 'banner_id', 'id');
+  }
   public static function getBannerByID($id)
   {
     // TODO: 根据 Banner ID 号获取 Banner 信息
-    $result = Db::table('banner_item')->where('banner_id', '=', $id)->select();
-    return $result;
+    return self::with(['items', 'items.img'])->find($id);
   }
 }
