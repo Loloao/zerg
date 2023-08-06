@@ -418,3 +418,8 @@ BannerModel::with(['items', 'items.img'], 'name')->find();
 获取 token 信息时如果微信报错，需要抛出一个服务器内部错误，不必特定一个错误返回到客户端，只需要记录到日志
 
 无论微信接口成功或失败，都会返回 200 成功状态码，所以只能通过 errorCode 来判断
+
+**user 保存微信身份信息**
+- uid: 用户主键 
+- scope: 用户身份
+- openid: 微信id
