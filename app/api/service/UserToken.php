@@ -8,7 +8,7 @@ use app\api\model\User as UserModel;
 use app\lib\exception\WeChatException;
 use think\Exception;
 
-class UserToken
+class UserToken extends Token
 {
   protected $code;
   protected $wxAppID;
